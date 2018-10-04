@@ -1,0 +1,23 @@
+{
+  "name": "proxy-estimator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.ts",
+  "dependencies": {
+    "@types/node": "^10.11.2",
+    "socks": "^2.2.1",
+    "typescript": "^3.1.1",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "build6": "tsc index.ts -t es6 --lib esnext -d",
+    "echo": "node -e \"require('./build/RTT').RTTEchoServer({ host: '0.0.0.0', port: 443 })\"",
+    "t": "node -e \"require('./build/tester').main()\"",
+    "clean": "node -e \"require('./scripts/clean')\""
+  },
+  "author": "Untitled",
+  "license": "ISC"
+}

@@ -1,0 +1,6 @@
+/build
+/node_modules
+/*.zip
+/*.log
+/*.log.json
+/conf.json
