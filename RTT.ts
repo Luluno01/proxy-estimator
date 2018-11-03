@@ -260,3 +260,21 @@ export async function tester(opt: TesterOpt): Promise<TestResult> {
   }
   return res
 }
+
+/**
+ * @description Calculate the distribution function and the cumulative distribution function of given RTT sequence.
+ * @param rtt RTT sequence.
+ */
+export function getDF(rtt: number[]): { DF: number[], CDF: number[], min: number, max: number } {
+  let min = rtt[0]
+  let max = rtt[0]
+  for(let val of rtt) {
+    if(val < min) min = val
+    else if(val > max) max = val
+  }
+  const sampleCount = rtt.length
+  let DF: number[] = new Array(max - min + 1).fill(0)
+  for(let val of rtt) DF[val - min] = (DF[val - min] || 0) + 1
+  let currentCumulatedValue: number = 0
+  return { DF: DF.map(val => val / sampleCount), CDF: DF.map(val => (currentCumulatedValue += val) / sampleCount), min, max }
+}
